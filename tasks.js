@@ -43,9 +43,28 @@ function onDataReceived(text) {
   else if(text === 'batata\n'){
     batata();
   }
+  else if(text === 'help\n'){
+    help();
+  }
   else{
     unknownCommand(text);
   }
+}
+
+var list1;
+const fs = require("fs");
+try {
+  let data = fs.readFileSync(savefile);
+  var objList = JSON.parse(data);
+}
+catch (e) {
+  console.log(`this file is not present, we will create it!`)
+}
+if (objList !== undefined) {
+  list1 = objList.list1;
+} else {
+  objList = { "list1": [] }
+  list1 = objList.list1;
 }
 
 
@@ -72,7 +91,28 @@ function hello(){
 function batata(){
   console.log('batata');
 }
+const{hello{} batata{} quit{}}
+function help(){
+  List.forEach(element => console.log('-',element))
 
+console.log('----------')
+
+  };
+  console.log('batata');
+
+  const List = [help, quit, hello, batata, exit, add, remove, list, edit, check, uncheck];
+  
+  
+  function onDataReceived(text) {
+    text = text.trim();
+  
+    // Iterate through the List array and call the functions that match the input text
+    List.forEach(function(func) {
+      if (text.startsWith(func.name)) {
+        func(text);
+      }
+    });
+  }
 /**
  * Exits the application
  *
